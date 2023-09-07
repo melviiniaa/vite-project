@@ -1,22 +1,21 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/ava.jpg'
-import { setupCounter } from './counter.js'
+import './style.css';
+import javascriptLogo from './javascript.svg';
+// import viteLogo from '/ava.jpg';
+import { setupCounter } from './counter.js';
+import { pasangModulUtama } from './modul/utama.js';
+import $ from 'jquery';
+// import bs from 'bootstrap'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-   
-    <h1>Melvinia Azzahra Desylia</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Profil to learn more
-    </p>
-  </div>
-`
+window.modulUtama = pasangModulUtama($);
+console.log('Bismillah');
 
 setupCounter(document.querySelector('#counter'))
+
+if (import.meta.hot) {
+  import.meta.hot.on('vite:beforeUpdate',x=>{
+    window.modulUtama.bongkar();
+    console.log("Alhamdulillah, modulUtama selesai direfresh");
+  })
+  import.meta.hot.accept(x=>x)
+}
+
